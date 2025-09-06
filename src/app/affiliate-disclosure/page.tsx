@@ -23,10 +23,10 @@ export default function AffiliateDisclosurePage() {
 
         <h2>2. What Is an Affiliate Link?</h2>
         <p>
-        Throughout our website, especially in articles with product recommendations (like kitchen tools, specific food ingredients, or books), you may find links that are "affiliate links."
+        Throughout our website, especially in articles with product recommendations (like kitchen tools, specific food ingredients, or books), you may find links that are &quotaffiliate links.&quot
         </p>
         <p>
-        This simply means that if you click on one of these links and end up making a purchase from that retailer, we will receive a small commission from the sale. <strong>This comes at absolutely no extra cost to you.</strong> The price you pay is the same whether you use our link or go directly to the vendor's website.
+        This simply means that if you click on one of these links and end up making a purchase from that retailer, we will receive a small commission from the sale. <strong>This comes at absolutely no extra cost to you.</strong> The price you pay is the same whether you use our link or go directly to the vendor&apos;s website.
         </p>
 
         <h2>3. Our Promise and Guiding Principles</h2>
@@ -49,7 +49,7 @@ export default function AffiliateDisclosurePage() {
 
         <h2>5. Questions?</h2>
         <p>
-        If you have any questions about this disclosure or our affiliate relationships, please don't hesitate to contact us.
+        If you have any questions about this disclosure or our affiliate relationships, please don&apos;t hesitate to contact us.
         <a href="mailto:contact@thediabeteshub.com" className="block mt-2 font-semibold">contact@thediabeteshub.com</a>
         </p>
         </article>

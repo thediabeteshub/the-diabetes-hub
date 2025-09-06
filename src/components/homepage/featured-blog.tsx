@@ -2,6 +2,17 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+interface Post {
+    slug: string;
+    title: string;
+    description?: string;
+    tags?: string[];
+}
+
+interface FeaturedBlogProps {
+    posts: Post[];
+}
+
 const placeholderPosts = [
     {
         slug: "/blog/understanding-the-glycemic-index",
@@ -26,7 +37,7 @@ const placeholderPosts = [
 },
 ];
 
-export function FeaturedBlog() {
+export function FeaturedBlog({ posts }: FeaturedBlogProps) {
     return (
         <section className="py-16 md:py-24 bg-brand-background-alt" data-aos="fade-up">
         <div className="container mx-auto px-4 md:px-6">
@@ -40,9 +51,9 @@ export function FeaturedBlog() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {placeholderPosts.map((post) => (
-            <Card key={post.title} className="overflow-hidden h-full shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
-            <Link href={post.slug} className="group block">
+        {posts.map((post) => (
+            <Card key={post.slug} className="overflow-hidden h-full shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <Link href={`/blog/${post.slug}`} className="group block">
             <CardHeader className="p-0">
             <div className="relative h-56 w-full">
             <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300"></div>
@@ -50,14 +61,22 @@ export function FeaturedBlog() {
             </CardHeader>
             </Link>
             <CardContent className="p-6 flex-grow flex flex-col">
-            <span className="text-sm font-semibold text-brand-accent-secondary bg-teal-100 px-3 py-1 rounded-full self-start">{post.tag}</span>
+            {post.tags && post.tags.length > 0 && (
+                <span className="text-sm font-semibold text-brand-accent-secondary bg-teal-100 px-3 py-1 rounded-full self-start">
+                {post.tags[0]}
+                </span>
+            )}
             <CardTitle className="mt-4 text-xl font-bold">
-            <Link href={post.slug} className="hover:text-brand-accent-primary transition-colors">{post.title}</Link>
+            <Link href={`/blog/${post.slug}`} className="hover:text-brand-accent-primary transition-colors">
+            {post.title}
+            </Link>
             </CardTitle>
-            <p className="mt-2 text-brand-text-secondary flex-grow">{post.description}</p>
+            <p className="mt-2 text-brand-text-secondary flex-grow">
+            {post.description || "Read more about this topic..."}
+            </p>
             <div className="mt-4">
             <Button asChild variant="link" className="p-0 h-auto font-bold text-brand-accent-secondary">
-            <Link href={post.slug}>Read More →</Link>
+            <Link href={`/blog/${post.slug}`}>Read More →</Link>
             </Button>
             </div>
             </CardContent>
@@ -72,5 +91,5 @@ export function FeaturedBlog() {
         </div>
         </div>
         </section>
-    )
+    );
 }

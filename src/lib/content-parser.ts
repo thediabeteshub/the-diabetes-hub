@@ -1,3 +1,4 @@
+
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -7,7 +8,22 @@ import html from 'remark-html'
 // Get the directory path for the content
 const contentDirectory = path.join(process.cwd(), '_content')
 
-export function getSortedContentData(contentType: 'blog' | 'recipes') {
+// Define a type for your frontmatter
+interface FrontmatterData {
+    title: string;
+    date: string;
+    description?: string;
+    prepTime?: string;
+    cookTime?: string;
+    servings?: string;
+    difficulty?: string;
+    author?: string;
+    image?: string;
+    [key: string]: string | undefined;
+}
+
+// Update to include 'expert-advice' as a valid content type
+export function getSortedContentData(contentType: 'blog' | 'recipes' | 'expert-advice') {
     const dirPath = path.join(contentDirectory, contentType)
 
     // Check if the directory exists
@@ -32,7 +48,7 @@ export function getSortedContentData(contentType: 'blog' | 'recipes') {
         // Combine the data with the slug
         return {
             slug,
-            ...(matterResult.data as { title: string; date: string; [key: string]: any }),
+            ...(matterResult.data as FrontmatterData),
         }
     })
 
@@ -46,7 +62,8 @@ export function getSortedContentData(contentType: 'blog' | 'recipes') {
     })
 }
 
-export function getAllContentSlugs(contentType: 'blog' | 'recipes') {
+// Update to include 'expert-advice' as a valid content type
+export function getAllContentSlugs(contentType: 'blog' | 'recipes' | 'expert-advice') {
     const dirPath = path.join(contentDirectory, contentType)
 
     // Check if the directory exists
@@ -65,7 +82,8 @@ export function getAllContentSlugs(contentType: 'blog' | 'recipes') {
     })
 }
 
-export async function getContentData(contentType: 'blog' | 'recipes', slug: string) {
+// Update to include 'expert-advice' as a valid content type
+export async function getContentData(contentType: 'blog' | 'recipes' | 'expert-advice', slug: string) {
     const fullPath = path.join(contentDirectory, contentType, `${slug}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
@@ -82,6 +100,6 @@ export async function getContentData(contentType: 'blog' | 'recipes', slug: stri
     return {
         slug,
         contentHtml,
-        ...(matterResult.data as { title: string; date: string; [key: string]: any }),
+        ...(matterResult.data as FrontmatterData),
     }
 }

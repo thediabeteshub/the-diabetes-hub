@@ -9,7 +9,7 @@ export default function ContactPage() {
         Get in Touch
         </h1>
         <p className="mt-6 text-lg md:text-xl text-brand-text-secondary">
-        Have a question, a suggestion, or a collaboration idea? We'd love to hear from you! The best way to reach us is by filling out our contact form.
+        Have a question, a suggestion, or a collaboration idea? We&apos;d love to hear from you! The best way to reach us is by filling out our contact form.
         </p>
         <p className="mt-4 text-lg md:text-xl text-brand-text-secondary">
         We read every message and will do our best to respond within 48 business hours.

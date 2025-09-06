@@ -15,12 +15,12 @@ export default function TermsOfServicePage() {
         <article className="prose prose-lg lg:prose-xl max-w-none prose-h2:font-heading prose-h2:font-bold prose-a:text-brand-accent-secondary">
         <h2>1. Agreement to Terms</h2>
         <p>
-        By accessing and using our website, The Diabetes Hub (the "Site"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree with all of these terms, you are expressly prohibited from using the Site and must discontinue use immediately.
+        By accessing and using our website, The Diabetes Hub (the &quot;Site&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree with all of these terms, you are expressly prohibited from using the Site and must discontinue use immediately.
         </p>
 
         <h2>2. Intellectual Property Rights</h2>
         <p>
-        Unless otherwise indicated, the Site is our proprietary property. All source code, text, graphics, logos, and images (collectively, the "Content") are owned or controlled by us and are protected by copyright and trademark laws. The Content is provided on the Site "AS IS" for your personal, non-commercial use only.
+        Unless otherwise indicated, the Site is our proprietary property. All source code, text, graphics, logos, and images (collectively, the &quot;Content&quot;) are owned or controlled by us and are protected by copyright and trademark laws. The Content is provided on the Site &quot;AS IS&quot; for your personal, non-commercial use only.
         </p>
         <p>
         You may not copy, reproduce, distribute, sell, or otherwise exploit any part of the Site or its Content for any commercial purpose without our express prior written permission.
@@ -56,7 +56,7 @@ export default function TermsOfServicePage() {
 
         <h2>7. Third-Party Websites</h2>
         <p>
-        The Site may contain links to other websites ("Third-Party Websites"). Such Third-Party Websites are not investigated, monitored, or checked for accuracy by us, and we are not responsible for any Third-Party Websites accessed through the Site.
+        The Site may contain links to other websites (&quot;Third-Party Websites&quot;). Such Third-Party Websites are not investigated, monitored, or checked for accuracy by us, and we are not responsible for any Third-Party Websites accessed through the Site.
         </p>
 
         <h2>8. Term and Termination</h2>

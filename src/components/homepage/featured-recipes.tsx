@@ -2,6 +2,18 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+interface Recipe {
+    slug: string;
+    title: string;
+    description?: string;
+    tags?: string[];
+}
+
+interface FeaturedRecipesProps {
+    posts: Recipe[];
+}
+
+
 const featuredRecipes = [
     {
         slug: "/recipes/quick-chickpea-curry",
@@ -23,7 +35,7 @@ const featuredRecipes = [
 },
 ];
 
-export function FeaturedRecipes() {
+export function FeaturedRecipes({ posts }: FeaturedRecipesProps) {
     return (
         <section className="py-16 md:py-24 bg-brand-background-alt" data-aos="fade-up">
         <div className="container mx-auto px-4 md:px-6">
@@ -37,9 +49,9 @@ export function FeaturedRecipes() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuredRecipes.map((recipe) => (
-            <Card key={recipe.title} className="overflow-hidden h-full shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
-            <Link href={recipe.slug} className="group block">
+        {posts.map((recipe) => (
+            <Card key={recipe.slug} className="overflow-hidden h-full shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <Link href={`/recipes/${recipe.slug}`} className="group block">
             <CardHeader className="p-0">
             <div className="relative h-56 w-full">
             <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300"></div>
@@ -48,17 +60,23 @@ export function FeaturedRecipes() {
             </Link>
             <CardContent className="p-6 flex-grow flex flex-col">
             <div className="flex gap-2 mb-2">
-            {recipe.tags.map(tag => (
-                <span key={tag} className="text-xs font-semibold text-orange-800 bg-orange-100 px-2 py-1 rounded-full">{tag}</span>
+            {recipe.tags?.map(tag => (
+                <span key={tag} className="text-xs font-semibold text-orange-800 bg-orange-100 px-2 py-1 rounded-full">
+                {tag}
+                </span>
             ))}
             </div>
             <CardTitle className="text-xl font-bold">
-            <Link href={recipe.slug} className="hover:text-brand-accent-primary transition-colors">{recipe.title}</Link>
+            <Link href={`/recipes/${recipe.slug}`} className="hover:text-brand-accent-primary transition-colors">
+            {recipe.title}
+            </Link>
             </CardTitle>
-            <p className="mt-2 text-brand-text-secondary line-clamp-2 flex-grow">{recipe.description}</p>
+            <p className="mt-2 text-brand-text-secondary line-clamp-2 flex-grow">
+            {recipe.description || "Try this delicious recipe that's perfect for managing blood sugar levels."}
+            </p>
             <div className="mt-4">
             <Button asChild variant="link" className="p-0 h-auto font-bold text-brand-accent-secondary">
-            <Link href={recipe.slug}>View Recipe →</Link>
+            <Link href={`/recipes/${recipe.slug}`}>View Recipe →</Link>
             </Button>
             </div>
             </CardContent>

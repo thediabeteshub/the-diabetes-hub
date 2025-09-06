@@ -1,6 +1,5 @@
 import { getAllContentSlugs, getContentData } from "@/lib/content-parser";
 import { notFound } from "next/navigation";
-import { format } from 'date-fns';
 
 // This function tells Next.js which recipe pages to pre-build
 export async function generateStaticParams() {
@@ -8,8 +7,13 @@ export async function generateStaticParams() {
     return paths;
 }
 
-export default async function RecipePostPage({ params }: { params: { slug: string } }) {
-    const { slug } = params;
+export default async function RecipePostPage({
+    params
+}: {
+    params: Promise<{ slug: string }>
+}) {
+    // AWAIT the params promise
+    const { slug } = await params;
 
     try {
         const recipe = await getContentData("recipes", slug);
@@ -57,7 +61,7 @@ export default async function RecipePostPage({ params }: { params: { slug: strin
             </div>
             </article>
         );
-    } catch (error) {
+    } catch {
         // If the markdown file doesn't exist, show a 404 page
         notFound();
     }

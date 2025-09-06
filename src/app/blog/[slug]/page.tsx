@@ -8,8 +8,14 @@ export async function generateStaticParams() {
     return paths;
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-    const { slug } = params;
+// FIXED: Added async/await for params and updated type definition
+export default async function BlogPostPage({
+    params
+}: {
+    params: Promise<{ slug: string }>
+}) {
+    // AWAIT the params promise
+    const { slug } = await params;
 
     try {
         const post = await getContentData("blog", slug);
@@ -37,7 +43,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             </div>
             </article>
         );
-    } catch (error) {
+    } catch {
         // If the markdown file doesn't exist, show a 404 page
         notFound();
     }

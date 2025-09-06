@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
         <article className="prose prose-lg lg:prose-xl max-w-none prose-h2:font-heading prose-h2:font-bold prose-a:text-brand-accent-secondary">
         <h2>1. Introduction</h2>
         <p>
-        Welcome to The Diabetes Hub ("we," "us," or "our"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains what information we collect, how we use it, and what rights you have in relation to it.
+        Welcome to The Diabetes Hub (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains what information we collect, how we use it, and what rights you have in relation to it.
         </p>
         <p>
         This policy applies to all information collected through our website (thediabeteshub.com) and any related services, sales, marketing, or events.
@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
 
         <h2>4. Affiliate Disclosure</h2>
         <p>
-        The Diabetes Hub participates in affiliate marketing programs. This means that some of the links on our website (especially in product recommendations) are "affiliate links." If you click on an affiliate link and make a purchase, we may receive a small commission at no extra cost to you.
+        The Diabetes Hub participates in affiliate marketing programs. This means that some of the links on our website (especially in product recommendations) are &quot;affiliate links.&quot; If you click on an affiliate link and make a purchase, we may receive a small commission at no extra cost to you.
         </p>
         <p>
         We only recommend products and services that we genuinely believe will provide value to our readers. This commission helps us to keep The Diabetes Hub running and continue creating free, valuable content for you.
@@ -84,14 +84,14 @@ export default function PrivacyPolicyPage() {
         If you are a California resident, you have specific rights regarding your personal information. We do not sell your personal information. You have the right to request information about the categories of personal information we have collected and the right to request the deletion of your information.
         </p>
 
-        <h2>8. Children's Privacy</h2>
+        <h2>8. Children&apos;s Privacy</h2>
         <p>
         Our website is not intended for use by children under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have collected such information, we will take steps to delete it.
         </p>
 
         <h2>9. Changes to This Privacy Policy</h2>
         <p>
-        We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Effective Date" at the top. We encourage you to review this policy periodically to stay informed.
+        We may update this Privacy Policy from time to time. The updated version will be indicated by an updated &quot;Effective Date&quot; at the top. We encourage you to review this policy periodically to stay informed.
         </p>
 
         <h2>10. Contact Us</h2>

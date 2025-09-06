@@ -11,7 +11,7 @@ import {
 // This is a global type declaration. You can also put this in a separate .d.ts file.
 declare global {
     interface Window {
-        PagefindUI: any;
+        PagefindUI?: new (options: { element: HTMLElement; showSubResults?: boolean; showImages?: boolean }) => unknown;
     }
 }
 
@@ -21,8 +21,8 @@ interface SearchDialogProps {
 }
 
 export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
-    const pagefindRef = useRef(null);
-    const [pagefindInstance, setPagefindInstance] = useState<any>(null);
+    const pagefindRef = useRef<HTMLDivElement | null>(null);
+    const [pagefindInstance, setPagefindInstance] = useState<unknown>(null);
 
     useEffect(() => {
         if (isOpen && pagefindRef.current && !pagefindInstance) {
@@ -36,7 +36,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
             script.onload = () => {
                 if (window.PagefindUI) {
                     const pf = new window.PagefindUI({
-                        element: pagefindRef.current,
+                        element: pagefindRef.current!,
                         showSubResults: true,
                         showImages: false,
                     });

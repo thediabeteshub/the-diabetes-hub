@@ -8,8 +8,13 @@ export async function generateStaticParams() {
     return paths;
 }
 
-export default async function ExpertAdvicePostPage({ params }: { params: { slug: string } }) {
-    const { slug } = params;
+export default async function ExpertAdvicePostPage({
+    params
+}: {
+    params: Promise<{ slug: string }>
+}) {
+    // AWAIT the params promise
+    const { slug } = await params;
 
     try {
         const post = await getContentData("expert-advice", slug);
@@ -23,7 +28,8 @@ export default async function ExpertAdvicePostPage({ params }: { params: { slug:
             {post.title}
             </h1>
             <p className="mt-4 text-lg text-brand-text-secondary">
-            By {post.author || 'The Diabetes Hub Expert'} on {format(new Date(post.date), 'MMMM d, yyyy')}
+            By {post.author || 'The Diabetes Hub Expert'} on{" "}
+            {format(new Date(post.date), "MMMM d, yyyy")}
             </p>
             </header>
 
@@ -38,7 +44,7 @@ export default async function ExpertAdvicePostPage({ params }: { params: { slug:
             </div>
             </article>
         );
-    } catch (error) {
+    } catch {
         // If the markdown file doesn't exist, show a 404 page
         notFound();
     }
