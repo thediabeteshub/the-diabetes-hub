@@ -14,27 +14,6 @@ interface FeaturedRecipesProps {
 }
 
 
-const featuredRecipes = [
-    {
-        slug: "/recipes/quick-chickpea-curry",
-        title: "Quick Chickpea & Spinach Curry",
-        description: "A hearty and healthy weeknight meal that's ready in under 30 minutes.",
-        tags: ["Dinner", "Vegan"],
-    },
-{
-    slug: "#",
-    title: "Masala Oats Upma",
-    description: "A savory and fiber-rich breakfast to keep you full and energized.",
-    tags: ["Breakfast"],
-},
-{
-    slug: "#",
-    title: "Tandoori Tofu Skewers",
-    description: "A protein-packed appetizer or main course perfect for grilling.",
-    tags: ["Snack", "Vegetarian"],
-},
-];
-
 export function FeaturedRecipes({ posts }: FeaturedRecipesProps) {
     return (
         <section className="py-16 md:py-24 bg-brand-background-alt" data-aos="fade-up">

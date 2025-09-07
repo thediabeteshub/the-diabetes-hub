@@ -6,7 +6,7 @@ import { remark } from 'remark'
 import html from 'remark-html'
 
 // Get the directory path for the content
-const contentDirectory = path.join(process.cwd(), '_content')
+const contentDirectory = path.join(process.cwd(), 'content')
 
 // Define a type for your frontmatter
 interface FrontmatterData {

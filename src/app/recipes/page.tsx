@@ -1,53 +1,11 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-// Placeholder data for recipes. We'll connect this to Markdown files later.
-const recipes = [
-    {
-        slug: "#",
-        title: "Quick Chickpea & Spinach Curry",
-        description: "A hearty and healthy weeknight meal that's ready in under 30 minutes.",
-        tags: ["Low GI", "Vegan", "Dinner"],
-        image: "/images/recipes/chickpea-curry.jpg",
-    },
-{
-    slug: "#",
-    title: "Masala Oats Upma",
-    description: "A savory and fiber-rich breakfast to keep you full and energized.",
-    tags: ["Low GI", "Breakfast"],
-    image: "/images/recipes/masala-oats.jpg",
-},
-{
-    slug: "#",
-    title: "Tandoori Tofu Skewers",
-    description: "A protein-packed appetizer or main course perfect for grilling.",
-    tags: ["Low GI", "Vegetarian", "Snack"],
-    image: "/images/recipes/tandoori-tofu.jpg",
-},
-{
-    slug: "#",
-    title: "Almond Flour Roti",
-    description: "A delicious, gluten-free, and low-carb alternative to traditional roti.",
-    tags: ["Low Carb", "Keto Friendly"],
-    image: "/images/recipes/almond-roti.jpg",
-},
-{
-    slug: "#",
-    title: "Sprouted Mung Bean Salad",
-    description: "A refreshing and nutrient-dense salad, great for lunch or as a side dish.",
-    tags: ["Low GI", "Salad", "Lunch"],
-    image: "/images/recipes/mung-bean-salad.jpg",
-},
-{
-    slug: "#",
-    title: "Sugar-Free Date & Nut Ladoo",
-    description: "A healthy, naturally sweetened treat to satisfy your dessert cravings.",
-    tags: ["Dessert", "No Added Sugar"],
-    image: "/images/recipes/date-ladoo.jpg",
-},
-];
+import { getSortedContentData } from "@/lib/content-parser";
 
 export default function RecipesPage() {
+    // Fetch all recipe data
+    const recipes = getSortedContentData("recipes");
+
     return (
         <div className="container mx-auto px-4 md:px-6 py-24 md:py-32">
         <div className="text-center mb-12">
@@ -63,7 +21,7 @@ export default function RecipesPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {recipes.map((recipe) => (
-            <Link href={`/recipes/${recipe.slug}`} key={recipe.title} className="group block">
+            <Link href={`/recipes/${recipe.slug}`} key={recipe.slug} className="group block">
             <Card className="overflow-hidden h-full shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
             <CardHeader className="p-0">
             <div className="relative h-56 w-full">
@@ -72,11 +30,13 @@ export default function RecipesPage() {
             </div>
             </CardHeader>
             <CardContent className="p-6">
-            <div className="flex gap-2 mb-2">
-            {recipe.tags.map(tag => (
-                <span key={tag} className="text-xs font-semibold text-brand-accent-secondary bg-teal-100 px-2 py-1 rounded-full">{tag}</span>
-            ))}
-            </div>
+            {recipe.tags && (
+                <div className="flex flex-wrap gap-2 mb-2">
+                {(recipe.tags as unknown as string[]).map(tag => (
+                    <span key={tag} className="text-xs font-semibold text-brand-accent-secondary bg-teal-100 px-2 py-1 rounded-full">{tag}</span>
+                ))}
+                </div>
+            )}
             <CardTitle className="text-xl font-bold group-hover:text-brand-accent-primary transition-colors">
             {recipe.title}
             </CardTitle>

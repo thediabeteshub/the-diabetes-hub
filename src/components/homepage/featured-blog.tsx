@@ -13,29 +13,7 @@ interface FeaturedBlogProps {
     posts: Post[];
 }
 
-const placeholderPosts = [
-    {
-        slug: "/blog/understanding-the-glycemic-index",
-        image: "/images/placeholder-1.jpg",
-        title: "Understanding the Glycemic Index: A Beginner's Guide",
-        description: "Learn how the GI scale can help you make smarter food choices every day.",
-        tag: "Nutrition"
-    },
-{
-    slug: "#",
-    image: "/images/placeholder-2.jpg",
-    title: "5 Delicious Low-GI South Asian Breakfast Ideas",
-    description: "Start your day right with these blood-sugar-friendly and tasty recipes.",
-    tag: "Recipes"
-},
-{
-    slug: "#",
-    image: "/images/placeholder-3.jpg",
-    title: "Mindful Eating: Tips for Managing Diabetes During Festivals",
-    description: "Enjoy festive seasons without compromising your health goals.",
-    tag: "Lifestyle"
-},
-];
+
 
 export function FeaturedBlog({ posts }: FeaturedBlogProps) {
     return (

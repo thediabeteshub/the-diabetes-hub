@@ -14,7 +14,7 @@ const tools = [
     description: "Filter our entire recipe database by meal type, ingredients, and GI level.",
     href: "/recipes",
     icon: "🍲",
-    status: "Live"
+    status: "Coming Soon"
 },
 {
     title: "Weekly Meal Planner",

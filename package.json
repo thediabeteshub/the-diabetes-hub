@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "npx pagefind --source .next",
+    "postbuild": "npx pagefind --site .next",
     "start": "next start",
     "lint": "next lint"
   },
@@ -25,6 +25,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "shadcn": "^3.2.1",
+    "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
   },
