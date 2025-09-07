@@ -1,4 +1,3 @@
-
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -19,7 +18,8 @@ interface FrontmatterData {
     difficulty?: string;
     author?: string;
     image?: string;
-    [key: string]: string | undefined;
+    tags?: string[];
+    [key: string]: unknown; // <-- MODIFIED: Replaced 'any' with 'unknown' to satisfy ESLint
 }
 
 // Update to include 'expert-advice' as a valid content type

@@ -32,7 +32,8 @@ export default function RecipesPage() {
             <CardContent className="p-6">
             {recipe.tags && (
                 <div className="flex flex-wrap gap-2 mb-2">
-                {(recipe.tags as unknown as string[]).map(tag => (
+                {/* REMOVED the '(recipe.tags as unknown as string[])' assertion */}
+                {recipe.tags.map(tag => (
                     <span key={tag} className="text-xs font-semibold text-brand-accent-secondary bg-teal-100 px-2 py-1 rounded-full">{tag}</span>
                 ))}
                 </div>
