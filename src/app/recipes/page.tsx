@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image"; // <-- 1. Import the Image component
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getSortedContentData } from "@/lib/content-parser";
 
@@ -25,14 +26,24 @@ export default function RecipesPage() {
             <Card className="overflow-hidden h-full shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
             <CardHeader className="p-0">
             <div className="relative h-56 w-full">
-            {/* Placeholder for Image */}
-            <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300"></div>
+            {/* --- 2. START: This is the updated image block --- */}
+            {recipe.image ? (
+                <Image
+                src={recipe.image as string}
+                alt={recipe.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+            ) : (
+                <div className="bg-gray-200 h-full w-full"></div>
+            )}
+            {/* --- END: This is the updated image block --- */}
             </div>
             </CardHeader>
             <CardContent className="p-6">
             {recipe.tags && (
                 <div className="flex flex-wrap gap-2 mb-2">
-                {/* REMOVED the '(recipe.tags as unknown as string[])' assertion */}
                 {recipe.tags.map(tag => (
                     <span key={tag} className="text-xs font-semibold text-brand-accent-secondary bg-teal-100 px-2 py-1 rounded-full">{tag}</span>
                 ))}

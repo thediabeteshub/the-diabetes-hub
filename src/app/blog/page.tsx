@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image"; // <-- 1. Import the Image component
 import { getSortedContentData } from "@/lib/content-parser";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from 'date-fns';
@@ -21,8 +22,19 @@ export default function BlogPage() {
             <Card className="overflow-hidden h-full shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
             <CardHeader className="p-0">
             <div className="relative h-56 w-full">
-            {/* Placeholder for Image */}
-            <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300"></div>
+            {/* --- 2. START: This is the updated image block --- */}
+            {post.image ? (
+                <Image
+                src={post.image as string}
+                alt={post.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+            ) : (
+                <div className="bg-gray-200 h-full w-full"></div>
+            )}
+            {/* --- END: This is the updated image block --- */}
             </div>
             </CardHeader>
             <CardContent className="p-6">

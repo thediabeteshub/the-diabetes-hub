@@ -1,13 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
+import { serialize } from 'next-mdx-remote/serialize' // <-- 1. IMPORTED serialize
 
 // Get the directory path for the content
 const contentDirectory = path.join(process.cwd(), 'content')
 
-// Define a type for your frontmatter
+// Define a type for your frontmatter (no changes needed here)
 interface FrontmatterData {
     title: string;
     date: string;
@@ -19,33 +18,29 @@ interface FrontmatterData {
     author?: string;
     image?: string;
     tags?: string[];
-    [key: string]: unknown; // <-- MODIFIED: Replaced 'any' with 'unknown' to satisfy ESLint
+    [key: string]: unknown;
 }
 
 // Update to include 'expert-advice' as a valid content type
 export function getSortedContentData(contentType: 'blog' | 'recipes' | 'expert-advice') {
     const dirPath = path.join(contentDirectory, contentType)
 
-    // Check if the directory exists
     if (!fs.existsSync(dirPath)) {
         console.warn(`Directory not found: ${dirPath}`);
         return [];
     }
 
-    const fileNames = fs.readdirSync(dirPath)
+    // <-- 2. UPDATED to read .mdx files
+    const fileNames = fs.readdirSync(dirPath).filter(file => file.endsWith('.mdx'));
 
     const allContentData = fileNames.map((fileName) => {
-        // Remove ".md" from file name to get slug
-        const slug = fileName.replace(/\.md$/, '')
+        // <-- 3. UPDATED to replace .mdx extension
+        const slug = fileName.replace(/\.mdx$/, '')
 
-        // Read markdown file as string
         const fullPath = path.join(dirPath, fileName)
         const fileContents = fs.readFileSync(fullPath, 'utf8')
-
-        // Use gray-matter to parse the post metadata section
         const matterResult = matter(fileContents)
 
-        // Combine the data with the slug
         return {
             slug,
             ...(matterResult.data as FrontmatterData),
@@ -66,17 +61,17 @@ export function getSortedContentData(contentType: 'blog' | 'recipes' | 'expert-a
 export function getAllContentSlugs(contentType: 'blog' | 'recipes' | 'expert-advice') {
     const dirPath = path.join(contentDirectory, contentType)
 
-    // Check if the directory exists
     if (!fs.existsSync(dirPath)) {
         return [];
     }
 
-    const fileNames = fs.readdirSync(dirPath)
+    // <-- 4. UPDATED to read .mdx files
+    const fileNames = fs.readdirSync(dirPath).filter(file => file.endsWith('.mdx'));
 
     return fileNames.map((fileName) => {
         return {
             params: {
-                slug: fileName.replace(/\.md$/, ''),
+                slug: fileName.replace(/\.mdx$/, ''), // <-- 5. UPDATED to replace .mdx extension
             },
         }
     })
@@ -84,22 +79,19 @@ export function getAllContentSlugs(contentType: 'blog' | 'recipes' | 'expert-adv
 
 // Update to include 'expert-advice' as a valid content type
 export async function getContentData(contentType: 'blog' | 'recipes' | 'expert-advice', slug: string) {
-    const fullPath = path.join(contentDirectory, contentType, `${slug}.md`)
+    // <-- 6. UPDATED to look for .mdx files
+    const fullPath = path.join(contentDirectory, contentType, `${slug}.mdx`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-    // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents)
 
-    // Use remark to convert markdown into HTML string
-    const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
-    const contentHtml = processedContent.toString()
+    // <-- 7. REPLACED remark/html with MDX serialization
+    const mdxSource = await serialize(matterResult.content)
 
-    // Combine the data with the slug and contentHtml
+    // <-- 8. UPDATED the return object structure
     return {
         slug,
-        contentHtml,
-        ...(matterResult.data as FrontmatterData),
+        mdxSource,
+        frontmatter: matterResult.data as FrontmatterData,
     }
 }
