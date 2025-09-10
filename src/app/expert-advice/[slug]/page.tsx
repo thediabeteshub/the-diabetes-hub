@@ -28,7 +28,8 @@ export default async function ExpertAdvicePostPage(props: { params: Promise<{ sl
     const { slug } = params;
 
     try {
-        const { mdxSource, frontmatter } = await getContentData("expert-advice", slug);
+        // Change mdxSource to content
+        const { content, frontmatter } = getContentData("expert-advice", slug);
 
         return (
             <article className="container mx-auto px-4 md:px-6 py-24 md:py-32">
@@ -57,7 +58,8 @@ export default async function ExpertAdvicePostPage(props: { params: Promise<{ sl
             )}
 
             <div className="prose prose-lg lg:prose-xl max-w-none prose-h2:font-heading prose-h2:font-bold prose-a:text-brand-accent-secondary">
-            <MDXRemote source={mdxSource} components={components} />
+            {/* Use content instead of mdxSource */}
+            <MDXRemote source={content} components={components} />
             </div>
             </div>
             </article>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -7,13 +8,12 @@ interface Post {
     title: string;
     description?: string;
     tags?: string[];
+    image?: string;
 }
 
 interface FeaturedBlogProps {
     posts: Post[];
 }
-
-
 
 export function FeaturedBlog({ posts }: FeaturedBlogProps) {
     return (
@@ -34,7 +34,18 @@ export function FeaturedBlog({ posts }: FeaturedBlogProps) {
             <Link href={`/blog/${post.slug}`} className="group block">
             <CardHeader className="p-0">
             <div className="relative h-56 w-full">
-            <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300"></div>
+            {post.image ? (
+                <Image
+                src={post.image} // Use the path directly from frontmatter
+                alt={post.title}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+            ) : (
+                <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+                <span className="text-brand-text-secondary">No image</span>
+                </div>
+            )}
             </div>
             </CardHeader>
             </Link>

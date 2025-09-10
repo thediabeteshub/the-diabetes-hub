@@ -1,3 +1,4 @@
+// app/page.tsx
 import { getSortedContentData } from "@/lib/content-parser";
 import { HeroSection } from "@/components/homepage/hero-section";
 import { FeaturedBlog } from "@/components/homepage/featured-blog";
@@ -8,8 +9,8 @@ import { FreeDownload } from "@/components/homepage/free-download";
 import { Newsletter } from "@/components/homepage/newsletter";
 
 export default function Home() {
-  const latestPosts = getSortedContentData('blog').slice(0, 3);
-  const latestRecipes = getSortedContentData('recipes').slice(0, 3); // Assuming you want 3 latest recipes
+  const latestPosts = getSortedContentData("blog").slice(0, 3);
+  const latestRecipes = getSortedContentData("recipes").slice(0, 3);
 
   return (
     <>
@@ -23,3 +24,4 @@ export default function Home() {
     </>
   );
 }
+

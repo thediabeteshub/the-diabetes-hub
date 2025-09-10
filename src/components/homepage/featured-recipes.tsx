@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -7,12 +8,12 @@ interface Recipe {
     title: string;
     description?: string;
     tags?: string[];
+    image?: string; // Added image property
 }
 
 interface FeaturedRecipesProps {
     posts: Recipe[];
 }
-
 
 export function FeaturedRecipes({ posts }: FeaturedRecipesProps) {
     return (
@@ -33,7 +34,18 @@ export function FeaturedRecipes({ posts }: FeaturedRecipesProps) {
             <Link href={`/recipes/${recipe.slug}`} className="group block">
             <CardHeader className="p-0">
             <div className="relative h-56 w-full">
-            <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300"></div>
+            {recipe.image ? (
+                <Image
+                src={recipe.image} // Use the path directly from frontmatter
+                alt={recipe.title}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+            ) : (
+                <div className="bg-gray-200 h-full w-full group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+                <span className="text-brand-text-secondary">No image</span>
+                </div>
+            )}
             </div>
             </CardHeader>
             </Link>
